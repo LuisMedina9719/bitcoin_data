@@ -1,0 +1,46 @@
+<div class="container" data-controller="bitcoin">
+  <div>
+    <%= form_with do |form| %>
+      <%= form.text_field :block_hash,  data: { bitcoin_target: "field", action: "keyup->bitcoin#charPermitted" },class: "input" %>
+      <%= form.submit %>
+      <div data-bitcoin-target="denied" ></div>
+    <% end %>
+  </div>
+
+  <div class="datas">
+    <% @bitcoins.each do |b|%>
+      <div id=<%=b.id%> data-bitcoin-target="item" class="accordion">
+        <div class="flex">
+          <div class="hash">
+            <%= b.block_hash%>
+          </div>
+          <div class="buttons">
+            <button style="margin-left: 5px; width: 10%" data-action="click->bitcoin#accordion" data-index=<%=b.id%> >
+              data
+            </button>
+            <button style="margin-left: 5px; width: 10%" id="myBtn" data-action="click->bitcoin#modal" data-index=<%=b.id%>>
+              borrar
+            </button>
+          </div>
+        </div>
+        <%= render partial: 'form', locals: {id: b.id} %>
+      </div>
+      <div id=<%=b.id%> class="panel" data-bitcoin-target="salida">
+        <p>
+          <%= "hash: #{b.block_hash}" %>
+        </p>
+        <p>
+          <%= "prev_block: #{b.prev_block}" %>
+        </p>
+        <p>
+          <%= "time: #{b.time}" %>
+        </p>
+        <p>
+          <%= "bits: #{b.bits}" %>
+        </p>
+      </div>
+    <% end %>
+    
+  </div>
+
+</div>

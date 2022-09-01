@@ -15,3 +15,16 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import "@hotwired/turbo"
+import "controllers"
+
+Turbo.setConfirmMethod(() => {
+  let dialog = document.getElementById("turbo-confirm")
+  dialog.showModal()
+  return new Promise((resolve, reject) =>{
+    dialog.addEventListener("close", () =>{
+      resolve(dialog.returnValue == "confirm")
+    },{ once:true })
+  })
+})

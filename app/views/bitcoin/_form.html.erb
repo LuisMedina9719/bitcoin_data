@@ -1,0 +1,11 @@
+<div id="myModal" class="modal" >
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p class="tittle">Are you Sure?</p>
+    <p class="content">if you confirm, the item will be destroy and can't be restore</p>
+    <%= button_to "Confirm", delete_bitcoin_path(id), method: :delete , class:"", id: "confirm"  %>
+  </div>  
+
+</div>
