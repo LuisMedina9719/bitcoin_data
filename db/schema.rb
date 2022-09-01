@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_08_27_170720) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bitcoins", force: :cascade do |t|
     t.string "block_hash"
     t.string "prev_block"
